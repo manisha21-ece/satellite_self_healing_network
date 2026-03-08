@@ -1,25 +1,37 @@
-# My First Project
+Self-Healing Satellite Communication Network Simulation
 
-Hi, I am Manisha K  
-Third Year Electronics and Communication Engineering (ECE) Student  
+This project simulates a satellite communication network between ground stations using LEO, MEO and GEO satellites.
 
-🎯 Career Vision:
-To build a strong career in core electronics and work in prestigious organizations like ISRO and leading PSUs (BHEL, BEL, DRDO), 
-or secure high-paying roles in core engineering and semiconductor industries.
+The simulation analyzes signal propagation and network performance using parameters such as Free Space Path Loss (FSPL), Signal-to-Noise Ratio (SNR), Bit Error Rate (BER), delay, throughput and packet loss.
 
-🚀 Current Focus:
-• Strengthening core ECE fundamentals  
-• Preparing for competitive exams (GATE & PSU)  
-• Building practical knowledge through projects  
-• Improving problem-solving and programming skills  
+The network uses routing algorithms to dynamically select the best communication path and maintain reliable connectivity between satellites and ground stations.
 
-💡 Technical Interests:
-• Semiconductor Technology  
-• Analog & Digital Electronics  
-• Embedded Systems  
-• Communication Systems  
-• Python for Engineering Applications  
+Tools Used
 
-📈 My Goal:
-To continuously learn, apply, and grow as a disciplined and technically strong engineer.
-This repository marks the beginning of my serious technical journey.
+- Python
+- NetworkX
+- Matplotlib
+
+Project Files
+
+- "satellite_network_simulation.py" – Python simulation code
+- "satellite_self_healing_network_report.pdf" – Project report
+
+Author
+
+Manisha K
+B.E Electronics and Communication Engineering (ECE)
+
+## Simulation Results
+
+![Satellite Network Topology](output/satellite_network_topology.png)
+
+![Propagation Delay Graph](output/propagation_delay_graph.png)
+
+![Throughput Graph](output/throughput_graph.png)
+
+![Packet Loss Graph](output/packet_loss_graph.png)
+
+![Network Reliability Graph](output/network_reliability_graph.png)
+
+![BER Graph](output/ber_graph.png)

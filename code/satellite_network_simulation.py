@@ -6,11 +6,9 @@ import networkx as nx
 random.seed(42)
 SPEED_OF_LIGHT=3e8
 
-
 # -------------------------------------------------
 # SATELLITE NETWORK MODEL
 # -------------------------------------------------
-
 def create_satellite_network():
     return {
         "Ground_Station_1": {
@@ -38,7 +36,6 @@ graph = create_satellite_network()
 # -------------------------------------------------
 # COMMUNICATION FORMULAS
 # -------------------------------------------------
-
 def free_space_path_loss(distance_km, frequency_mhz):
     return 20 * math.log10(distance_km) + 20 * math.log10(frequency_mhz) + 32.44
 def calculate_snr(fspl):
@@ -92,10 +89,10 @@ def power_constraint():
         return False   # Power insufficient
 
     return True
+
 # -------------------------------------------------
 # RANDOM LINK FAILURE MODEL
 # -------------------------------------------------
-
 def link_failure():
 
     failure_probability = 0.1   # 10% failure chance
@@ -104,10 +101,10 @@ def link_failure():
         return True
 
     return False
+
 # -------------------------------------------------
 # ORBITAL MOTION MODEL (Physics-Based)
 # -------------------------------------------------
-
 def orbital_distance(node1, node2, base_distance, time):
 
     # LEO → Fast sinusoidal variation
@@ -124,10 +121,10 @@ def orbital_distance(node1, node2, base_distance, time):
 
     else:
         return base_distance
+    
 # -------------------------------------------------
 # DIJKSTRA WITH FSPL + RAIN
 # -------------------------------------------------
-
 def find_path(graph, start, end, frequency,time):
 
     queue = [(0, start)]
@@ -174,13 +171,8 @@ def find_path(graph, start, end, frequency,time):
     return path
 
 # -------------------------------------------------
-# PERFORMANCE METRICS
-# -------------------------------------------------
-
-# -------------------------------------------------
 # PHYSICS-BASED PROPAGATION DELAY
 # -------------------------------------------------
-
 def calculate_delay(path, graph, time):
 
     total_delay = 0
@@ -219,11 +211,9 @@ def calculate_throughput(delay_ms):
 successful_transmissions = 0
 failed_transmissions = 0
 
-
 # -------------------------------------------------
 # STATISTICAL SIMULATION
 # -------------------------------------------------
-
 cycles = 100
 frequency_mhz = 2000  # 2 GHz satellite link
 
@@ -267,15 +257,9 @@ for cycle in range(cycles):
     reliability_list.append(reliability)
     ber_list.append(ber)
     
-    
-    
-
-    
-
 # -------------------------------------------------
 # STATISTICAL RESULTS
 # -------------------------------------------------
-
 if successful_transmissions > 0:
     avg_delay = sum(delay_list) / successful_transmissions
     avg_throughput = sum(throughput_list) / successful_transmissions
@@ -293,12 +277,11 @@ print("Network Reliability (%):", round(reliability,2))
 availability = (successful_transmissions / cycles) * 100
 
 print("Network Availability (%):", round(availability,2))
+
 # -------------------------------------------------
 # SATELLITE NETWORK TOPOLOGY GRAPH
 # -------------------------------------------------
-
 G = nx.Graph()
-
 for node in graph:
     for neighbor in graph[node]:
         if not G.has_edge(node,neighbor):
@@ -316,7 +299,7 @@ plt.show()
 # PROFESSIONAL RESEARCH STYLE SEPARATE GRAPHS
 # -------------------------------------------------
 
-# --------- 1️⃣ DELAY GRAPH ---------
+# --------- DELAY GRAPH ---------
 plt.figure(figsize=(6,4))
 plt.plot(delay_list,marker='o')
 plt.axhline(avg_delay, linestyle='--')
@@ -329,7 +312,7 @@ plt.savefig("delay_graph.png", dpi=300)
 plt.show()
 
 
-# --------- 2️⃣ THROUGHPUT GRAPH ---------
+# ---------THROUGHPUT GRAPH ---------
 plt.figure(figsize=(6,4))
 plt.plot(throughput_list,marker='o')
 plt.axhline(avg_throughput, linestyle='--')
@@ -342,7 +325,7 @@ plt.savefig("throughput_graph.png", dpi=300)
 plt.show()
 
 
-# --------- 3️⃣ PACKET LOSS GRAPH ---------
+# ---------PACKET LOSS GRAPH ---------
 plt.figure(figsize=(6,4))
 plt.plot(packet_loss_list,marker='o')
 plt.axhline(avg_packet_loss, linestyle='--')
@@ -353,7 +336,8 @@ plt.grid(True)
 plt.tight_layout()
 plt.savefig("packet_loss_graph.png", dpi=300)
 plt.show()
-# --------- 4️⃣ RELIABILITY GRAPH ---------
+
+# ---------RELIABILITY GRAPH ---------
 plt.figure(figsize=(6,4))
 plt.plot(reliability_list,marker='o')
 plt.title("Network Reliability vs Simulation Cycle")
@@ -364,6 +348,7 @@ plt.tight_layout()
 plt.savefig("reliability_graph.png", dpi=300)
 plt.show()
 
+#----------BER GRAPH-------------
 plt.figure(figsize=(6,4))
 plt.plot(ber_list,marker='o')
 plt.title("Bit Error Rate vs Simulation Cycle")
@@ -371,3 +356,4 @@ plt.xlabel("Cycle")
 plt.ylabel("BER")
 plt.grid(True)
 plt.show()
+
